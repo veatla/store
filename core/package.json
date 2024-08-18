@@ -16,6 +16,11 @@
       "main": "./dist/react.cjs",
       "module": "./dist/react.mjs",
       "types": "./dist/react.d.cts"
+    },
+    "./svelte": {
+      "main": "./dist/svelte.cjs",
+      "module": "./dist/svelte.mjs",
+      "types": "./dist/svelte.d.cts"
     }
   },
   "scripts": {
@@ -24,11 +29,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "pkgroll": "^2.4.2"
-  },
   "optionalDependencies": {
     "@types/react": "^18.3.3",
-    "react": "^18.3.1"
+    "pkgroll": "^2.4.2",
+    "react": "^18.3.1",
+    "svelte": "^4.2.18"
   }
 }
