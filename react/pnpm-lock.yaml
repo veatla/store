@@ -1275,7 +1275,10 @@ snapshots:
       '@typescript-eslint/types': 8.1.0
       eslint-visitor-keys: 3.4.3
 
-  '@veatla/store@file:../core': {}
+  '@veatla/store@file:../core':
+    optionalDependencies:
+      '@types/react': 18.3.3
+      react: 18.3.1
 
   '@vitejs/plugin-react-swc@3.7.0(vite@5.4.1)':
     dependencies:

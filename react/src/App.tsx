@@ -1,26 +1,65 @@
-import { useSyncExternalStore } from "react";
 import { createStore } from "@veatla/store";
+import { withReact } from "@veatla/store/react";
+import { useEffect } from "react";
 
-const store = createStore({
-  value: 1,
-});
+const store = withReact(
+  createStore({
+    value: 1,
+    text: "",
+  })
+);
+
+const rndm_text = (l: number) => {
+  const randomStr = (Math.random() + 1).toString(36).substring(l);
+  return randomStr;
+};
+
+const NumberRenderer = () => {
+  const length = store((state) => state.value);
+
+  useEffect(() => {
+    console.log(`state => state.value updated`);
+  }, [length]);
+
+  return (
+    <button
+      onClick={() => {
+        store.setState({
+          value: length + 1,
+        });
+      }}
+    >
+      {length}
+    </button>
+  );
+};
+
+const StringRenderer = () => {
+  const text = store((state) => state.text);
+
+  useEffect(() => {
+    console.log(`state => state.text updated`);
+  }, [text]);
+
+  return (
+    <button
+      onClick={() =>
+        store.setState({
+          text: rndm_text(8),
+        })
+      }
+    >
+      {text}
+    </button>
+  );
+};
 
 const App = () => {
-  const state = useSyncExternalStore(store.subscribe, store.get);
-
   return (
     <div>
       <h1>Hello world</h1>
-      <button
-        onClick={() => {
-          store.set({
-            value: state.value + 1,
-          });
-        }}
-      >
-        Update
-      </button>
-      {state.value}
+      <NumberRenderer />
+      <StringRenderer />
     </div>
   );
 };

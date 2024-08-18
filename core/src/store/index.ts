@@ -1,18 +1,6 @@
+import { CreateStoreType, StoreSetterFn, StoreSetValue } from "../types/store";
 import { is_array } from "../utils/is_equal_types";
 import { is_primitive_type } from "../utils/is_primitive";
-
-type ListenerFnType = () => void;
-export type StoreSetValue<T> = T | Partial<T>;
-export type StoreSetterFn<T> = (store: T) => StoreSetValue<T>;
-
-interface CreateStoreType<T> {
-  value: T;
-  set: <Value extends StoreSetValue<T> | StoreSetterFn<T>>(value: Value, push?: true) => void;
-  get: () => T;
-  listeners: Set<ListenerFnType>;
-  subscribe: (cb: ListenerFnType) => () => void;
-  update: () => void;
-}
 
 const is_setter_fn = <T>(value: unknown): value is StoreSetterFn<T> => {
   if (typeof value === "function") return true;
