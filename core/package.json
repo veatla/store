@@ -1,6 +1,6 @@
 {
   "name": "@veatla/store",
-  "version": "1.0.01",
+  "version": "1.0.02",
   "description": "",
   "type": "module",
   "main": "./dist/index.cjs",
