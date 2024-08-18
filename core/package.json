@@ -1,6 +1,6 @@
 {
   "name": "@veatla/store",
-  "version": "1.0.0",
+  "version": "1.0.01",
   "description": "",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -26,9 +26,19 @@
   "scripts": {
     "build": "pkgroll"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "store",
+    "react",
+    "redux",
+    "zustand"
+  ],
+  "author": "altaev <ksixen@gmail.com>",
   "license": "ISC",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/veatla/custom-store",
   "optionalDependencies": {
     "@types/react": "^18.3.3",
     "pkgroll": "^2.4.2",
