@@ -20,7 +20,7 @@ jobs:
       - name: Test npm login
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" > ~/.npmrc
 
-      - run: cd core && npm ci0
+      - run: cd core && npm ci
       - run: cd core && npm run build
       - run: cd core && npm publish
         env:
