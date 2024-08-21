@@ -33,6 +33,6 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: cd core && npm ci
       - run: cd core && npm run build
-      - run: cd core && npm publish
+      - run: cd core && npm publish --provenance --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
