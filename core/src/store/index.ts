@@ -1,28 +1,14 @@
-import { CreateStoreType, StoreSetterFn, StoreSetValue } from "../types/store";
-import { is_array } from "../utils/is_equal_types";
-import { is_primitive_type } from "../utils/is_primitive";
-
-const is_setter_fn = <T>(value: unknown): value is StoreSetterFn<T> => {
-  if (typeof value === "function") return true;
-  else return false;
-};
-
-const assign = <T>(state: T, value: StoreSetValue<T>) => {
-  if (is_primitive_type(state) || is_array(value)) {
-    return value as T;
-  }
-
-  return {
-    ...state,
-    ...value,
-  };
-};
+import { CreateStoreType } from "../types/store";
+import { assign } from "../utils/assign";
+import { is_setter_fn } from "../utils/is_setter_fn";
 
 export default function createStore<T>(initial_state?: T): CreateStoreType<T> {
+  const get = <Ouput = T>(selector?: (store: T) => Ouput): Ouput => {
+    if (selector) return selector(state.value);
+    else return state.value as unknown as Ouput;
+  };
   const state: CreateStoreType<T> = {
-    get() {
-      return state.value;
-    },
+    get,
     set(value, push = true) {
       const is_fn = is_setter_fn<T>(value);
       const new_value = is_fn ? value(state.value) : value;
