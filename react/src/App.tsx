@@ -2,14 +2,10 @@ import createStore from "../../core/src/store";
 import { withReact } from "../../core/src/react";
 import { useEffect } from "react";
 
-enum Modal {
-  None,
-  Default,
-}
-const store = withReact(createStore(Modal.None));
+const store = withReact(createStore({ text: 1, number: 1 }));
 
 const NumberRenderer = () => {
-  const length = store();
+  const length = store((store) => store.number);
 
   useEffect(() => {
     console.log(`state => state.value updated`);
@@ -18,7 +14,7 @@ const NumberRenderer = () => {
   return (
     <button
       onClick={() => {
-        store.setState(Modal.Default);
+        store.set({ number: length + 1 });
       }}
     >
       {length}
@@ -27,13 +23,13 @@ const NumberRenderer = () => {
 };
 
 const StringRenderer = () => {
-  const text = store();
+  const text = store((modal) => modal.text);
 
   useEffect(() => {
     console.log(`state => state.text updated`);
   }, [text]);
 
-  return <button onClick={() => store.setState(Modal.None)}>{text}</button>;
+  return <button onClick={() => store.set({ text: text + 1 })}>{text}</button>;
 };
 
 const App = () => {
