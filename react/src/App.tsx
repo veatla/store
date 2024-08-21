@@ -1,21 +1,15 @@
-import { createStore } from "@veatla/store";
-import { withReact } from "@veatla/store/react";
+import createStore from "../../core/src/store";
+import { withReact } from "../../core/src/react";
 import { useEffect } from "react";
 
-const store = withReact(
-  createStore({
-    value: 1,
-    text: "",
-  })
-);
-
-const rndm_text = (l: number) => {
-  const randomStr = (Math.random() + 1).toString(36).substring(l);
-  return randomStr;
-};
+enum Modal {
+  None,
+  Default,
+}
+const store = withReact(createStore(Modal.None));
 
 const NumberRenderer = () => {
-  const length = store((state) => state.value);
+  const length = store();
 
   useEffect(() => {
     console.log(`state => state.value updated`);
@@ -24,9 +18,7 @@ const NumberRenderer = () => {
   return (
     <button
       onClick={() => {
-        store.setState({
-          value: length + 1,
-        });
+        store.setState(Modal.Default);
       }}
     >
       {length}
@@ -35,23 +27,13 @@ const NumberRenderer = () => {
 };
 
 const StringRenderer = () => {
-  const text = store((state) => state.text);
+  const text = store();
 
   useEffect(() => {
     console.log(`state => state.text updated`);
   }, [text]);
 
-  return (
-    <button
-      onClick={() =>
-        store.setState({
-          text: rndm_text(8),
-        })
-      }
-    >
-      {text}
-    </button>
-  );
+  return <button onClick={() => store.setState(Modal.None)}>{text}</button>;
 };
 
 const App = () => {
