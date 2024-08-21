@@ -38,7 +38,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/veatla/custom-store",
+  "homepage": "https://github.com/veatla/store",
   "optionalDependencies": {
     "@types/react": "^18.3.3",
     "pkgroll": "^2.4.2",

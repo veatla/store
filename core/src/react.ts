@@ -13,7 +13,7 @@ export function withReact<Store extends CreateStoreType<any>>(store: Store) {
         const current = selector(store.get());
         if (!is_equal(state, current)) set_state(current);
       });
-    }, []);
+    }, [state]);
 
     return state;
   };
