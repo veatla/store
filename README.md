@@ -4,10 +4,13 @@ Simple store that uses [Observer Pattern](https://en.wikipedia.org/wiki/Observer
 ## How does it works?
 We can create store with `createStore(initialState)` function
 ```ts
+import { createStore } from "@veatla/store";
+import { withReact } from "@veatla/store/react";
+
 // create store with initialState outside React app
-const useStore = createStore({
+const useStore = withReact(createStore({
     num: 1
-});
+}));
 
 const App = () => {
     // get store.num and subscribe to changes
